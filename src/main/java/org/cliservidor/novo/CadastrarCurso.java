@@ -1,10 +1,11 @@
 package org.cliservidor.novo;
 
+import org.cliservidor.dao.CursoDAO;
+import org.cliservidor.model.Curso;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import org.cliservidor.dao.CursoDAO;
-import org.cliservidor.model.Curso;
 
 public class CadastrarCurso extends JFrame {
     private JTextField nomeCurso;

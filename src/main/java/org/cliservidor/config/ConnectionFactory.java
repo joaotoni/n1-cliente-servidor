@@ -9,9 +9,9 @@ public class ConnectionFactory {
         try {
             Class.forName("org.postgresql.Driver");
             return DriverManager.getConnection(
-                    "jdbc:postgresql://localhost/postgres",
+                    "jdbc:postgresql://localhost/n1",
                     "postgres",
-                    "aristides"
+                    "postgres"
             );
         } catch (SQLException e) {
 

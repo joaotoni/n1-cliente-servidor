@@ -1,12 +1,12 @@
 package org.cliservidor.dao;
 
+import org.cliservidor.config.ConnectionFactory;
+import org.cliservidor.model.Area;
+import org.cliservidor.model.Curso;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.cliservidor.model.Area;
-import org.cliservidor.config.ConnectionFactory;
-import org.cliservidor.model.Curso;
 
 public class CursoDAO implements ICursoDAO {
 

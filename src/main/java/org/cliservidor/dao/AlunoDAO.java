@@ -3,7 +3,10 @@ package org.cliservidor.dao;
 import org.cliservidor.config.ConnectionFactory;
 import org.cliservidor.model.Aluno;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +16,7 @@ public class AlunoDAO implements IAlunoDAO {
 
     public Aluno create(Aluno aluno) {
         try (Connection connection = ConnectionFactory.getConnection()) {
-            String sql = "INSERT INTO aluno (nome, maioridade, sexo, curso_id) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO aluno (nome, maioridade, sexo, curso) VALUES (?, ?, ?, ?)";
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, aluno.getNome());
             stmt.setBoolean(2, aluno.isMaioridade());
@@ -29,7 +32,7 @@ public class AlunoDAO implements IAlunoDAO {
 
     public void update(Aluno aluno) {
         try (Connection connection = ConnectionFactory.getConnection()) {
-            String sql = "UPDATE aluno SET nome = ?, maioridade = ?, sexo = ?, curso_id = ? WHERE matricula = ?";
+            String sql = "UPDATE aluno SET nome = ?, maioridade = ?, sexo = ?, curso = ? WHERE matricula = ?";
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, aluno.getNome());
             stmt.setBoolean(2, aluno.isMaioridade());
@@ -68,7 +71,6 @@ public class AlunoDAO implements IAlunoDAO {
                 aluno.setNome(rs.getString("nome"));
                 aluno.setMaioridade(rs.getBoolean("maioridade"));
                 aluno.setSexo(rs.getString("sexo"));
-                // Buscar curso também
                 return aluno;
             }
         }catch (SQLException e) {
@@ -91,7 +93,7 @@ public class AlunoDAO implements IAlunoDAO {
                 aluno.setNome(rs.getString("nome"));
                 aluno.setMaioridade(rs.getBoolean("maioridade"));
                 aluno.setSexo(rs.getString("sexo"));
-                // Buscar curso também
+                aluno.setCurso(rs.getString("curso"));
                 alunos.add(aluno);
             }
         } catch (SQLException e) {

@@ -1,6 +1,6 @@
 package org.cliservidor.novo;
 
-import org.cliservidor.dao.CursoDAO; // Importa o CursoDAO
+import org.cliservidor.dao.CursoDAO;
 import org.cliservidor.model.Curso;
 
 import javax.swing.*;

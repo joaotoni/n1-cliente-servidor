@@ -1,12 +1,14 @@
 package org.cliservidor.novo;
 
+import org.cliservidor.dao.AlunoDAO;
+import org.cliservidor.dao.CursoDAO;
+import org.cliservidor.model.Aluno;
+import org.cliservidor.model.Curso;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import org.cliservidor.dao.AlunoDAO;
-import org.cliservidor.dao.CursoDAO;
-import org.cliservidor.model.Aluno;
 
 public class CadastroAluno extends JFrame {
     private JTextField nomeCompleto;
@@ -43,20 +45,32 @@ public class CadastroAluno extends JFrame {
 
         cadastrar = new JButton("Cadastrar");
 
-        // Painel principal
         JPanel painelCadastro = new JPanel();
+        painelCadastro.setLayout(new BoxLayout(painelCadastro, BoxLayout.Y_AXIS));
         add(painelCadastro);
 
         // Adiciona os componentes ao painel
         painelCadastro.add(new JLabel("Nome completo:"));
         painelCadastro.add(nomeCompleto);
+
+        painelCadastro.add(Box.createVerticalStrut(10));
+
         painelCadastro.add(new JLabel("Sexo:"));
         painelCadastro.add(sexoComboBox);
+
+        painelCadastro.add(Box.createVerticalStrut(10));
+
         painelCadastro.add(new JLabel("Maioridade:"));
         painelCadastro.add(simRadioButton);
         painelCadastro.add(naoRadioButton);
+
+        painelCadastro.add(Box.createVerticalStrut(10));
+
         painelCadastro.add(new JLabel("Curso:"));
         painelCadastro.add(cursoComboBox);
+
+        painelCadastro.add(Box.createVerticalStrut(10));
+
         painelCadastro.add(cadastrar);
 
         // Chama o método para carregar as siglas dos cursos no JComboBox
@@ -71,18 +85,16 @@ public class CadastroAluno extends JFrame {
         });
     }
 
-    // Método para carregar as siglas dos cursos do banco de dados
     private void carregarCursos() {
         CursoDAO cursoDAO = new CursoDAO();
-        List<String> siglas = cursoDAO.buscarSiglasCursos();
+        List<Curso> cursos = cursoDAO.findAll();
 
-        // Adiciona as siglas dos cursos no JComboBox
-        for (String sigla : siglas) {
-            cursoComboBox.addItem(sigla);
+
+        for (Curso curso : cursos) {
+            cursoComboBox.addItem(curso.getNome());
         }
     }
 
-    // Método para cadastrar a pessoa
     private void cadastrarPessoa() {
         String nome = nomeCompleto.getText();
         String sexoSelecionado = (String) sexoComboBox.getSelectedItem();
@@ -115,7 +127,7 @@ public class CadastroAluno extends JFrame {
         aluno.setCurso(curso);
 
         AlunoDAO alunoDAO = new AlunoDAO();
-        alunoDAO.create(aluno); // Envia o aluno para o banco de dados
+        alunoDAO.create(aluno);
 
         JOptionPane.showMessageDialog(null, "Aluno cadastrado com sucesso!");
     }

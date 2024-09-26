@@ -11,9 +11,6 @@ public class MenuInterface extends JFrame {
     private JButton deletarCursoButton;
     private JButton deletarAlunoButton;
     private JButton atualizarCursoButton;
-    private JButton buscarPorCodigo;
-    private JButton buscarPorSigla;
-    private JButton buscarPorArea;
     private JPanel menuPanel;
 
     public MenuInterface() {
@@ -33,9 +30,6 @@ public class MenuInterface extends JFrame {
         deletarAlunoButton = new JButton("Deletar Aluno");
         cursosCadastradosButton = new JButton("Listar Cursos");
         alunosCadastradosButton = new JButton("Listar Alunos");
-        buscarPorCodigo = new JButton("Buscar por Código");
-        buscarPorSigla = new JButton("Buscar por Sigla");
-        buscarPorArea = new JButton("Buscar por Área");
 
         menuPanel.add(cadastrarCursoButton);
         menuPanel.add(cadastrarAlunoButton);
@@ -45,9 +39,6 @@ public class MenuInterface extends JFrame {
         menuPanel.add(deletarAlunoButton);
         menuPanel.add(cursosCadastradosButton);
         menuPanel.add(alunosCadastradosButton);
-        menuPanel.add(buscarPorCodigo);
-        menuPanel.add(buscarPorSigla);
-        menuPanel.add(buscarPorArea);
 
         setActionListeners();
     }
@@ -84,18 +75,6 @@ public class MenuInterface extends JFrame {
         alunosCadastradosButton.addActionListener(e -> {
             ListarAlunos listarAlunosFrame = new ListarAlunos();
             listarAlunosFrame.setVisible(true);
-        });
-        buscarPorCodigo.addActionListener(e -> {
-            BuscarPorCodigo buscarPorCodigo = new BuscarPorCodigo();
-            buscarPorCodigo.setVisible(true);
-        });
-        buscarPorSigla.addActionListener(e -> {
-            BuscarPorSigla buscarPorSigla = new BuscarPorSigla();
-            buscarPorSigla.setVisible(true);
-        });
-        buscarPorArea.addActionListener(e -> {
-            BuscarPorArea buscarPorArea = new BuscarPorArea();
-            buscarPorArea.setVisible(true);
         });
     }
 

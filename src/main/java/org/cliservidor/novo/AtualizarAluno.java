@@ -1,7 +1,7 @@
 package org.cliservidor.novo;
 
 import org.cliservidor.dao.AlunoDAO;
-import org.cliservidor.dao.CursoDAO; // Importa o CursoDAO
+import org.cliservidor.dao.CursoDAO;
 import org.cliservidor.model.Aluno;
 import org.cliservidor.model.Curso;
 
